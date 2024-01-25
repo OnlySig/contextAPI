@@ -6,10 +6,13 @@ import CampoTexto from "@/components/CampoTexto";
 import Botao from "@/components/Botao";
 
 import { useLocation } from "react-router-dom";
+import { useCarrinhoContext } from "../../hooks/useCarrinhoContext";
 
-const BarraNavegacao = ({ quantidadeProdutos }) => {
+const BarraNavegacao = () => {
   const location = useLocation();
   const ehAPaginaCarrinho = location.pathname === "/carrinho";
+  const {qtd} = useCarrinhoContext()
+
   return (
     <header>
       <nav className="navbar navbar-expand-md bg-black navbar-dark">
@@ -17,19 +20,12 @@ const BarraNavegacao = ({ quantidadeProdutos }) => {
           <Logo />
           <div className="d-flex flex-row-reverse">
             <BotaoTogglerMenu />
-            <BotaoCarrinho
-              className={`d-md-none ${ehAPaginaCarrinho && "d-none"}`}
-              quantidadeProdutos={quantidadeProdutos}
-            />
+            <BotaoCarrinho className={`d-md-none ${ehAPaginaCarrinho && "d-none"}`} quantidadeProdutos={qtd} />
           </div>
           <div className="collapse navbar-collapse" id="conteudoBarraNavegacao">
             <Menu />
             <form className="d-flex" role="search">
-              <CampoTexto
-                className="me-2"
-                type="search"
-                placeholder="Digite o nome do produto"
-                aria-label="Pesquisar"
+              <CampoTexto className="me-2" type="search" placeholder="Digite o nome do produto" aria-label="Pesquisar"
               />
               <Botao type="submit">Pesquisar</Botao>
             </form>
@@ -37,7 +33,7 @@ const BarraNavegacao = ({ quantidadeProdutos }) => {
               className={`d-none d-md-block ${
                 ehAPaginaCarrinho && "d-md-none"
               }`}
-              quantidadeProdutos={quantidadeProdutos}
+              quantidadeProdutos={qtd}
             />
           </div>
         </div>

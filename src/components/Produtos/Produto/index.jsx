@@ -19,15 +19,7 @@ const Produto = ({
           <h5 className="card-title fw-bold">{titulo}</h5>
           <p className="card-text">{descricao}</p>
           <p className="fw-bold">{formatadorMoeda(preco)}</p>
-
-          <Botao
-            variant="primary"
-            type="button"
-            className="border-0"
-            handleClick={() =>
-              adicionarProduto({ src, alt, id, titulo, descricao, preco })
-            }
-          >
+          <Botao variant="primary" type="button" className="border-0" handleClick={() => adicionarProduto({ src, alt, id, titulo, descricao, preco })}>
             Adicionar ao carrinho
           </Botao>
         </div>
